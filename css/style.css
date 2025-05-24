@@ -742,31 +742,93 @@ html {
     --translate-y-end: -25px;
 }
 
+/* CBSE Table Styling */
 .cbse-table {
     width: 100%;
-    border-collapse: collapse;
     margin-bottom: 1rem;
+    color: var(--theme-text-dark);
+    border-collapse: collapse; /* Ensure borders are collapsed */
+    border: 1px solid var(--theme-neutral-light); /* Outer border */
 }
 
-.cbse-table th, .cbse-table td {
-    border: 1px solid #dee2e6;
-    padding: 0.75rem;
-    vertical-align: top;
+.cbse-table th,
+.cbse-table td {
+    padding: 12px 15px; /* Increased padding */
+    border: 1px solid var(--theme-neutral-light); /* Cell borders */
     text-align: left;
 }
 
-.cbse-table th {
-    background-color: #f2f2f2;
-    font-weight: bold;
+.cbse-table thead th {
+    background-color: var(--theme-bg-medium); /* Light gray background for header */
+    color: var(--theme-primary-darker); /* Darker text for header */
+    font-weight: 600;
+    border-bottom: 2px solid var(--theme-neutral-dark); /* Stronger bottom border for header */
 }
 
-.cbse-table a {
-    color: #007bff;
+.cbse-table tbody tr:nth-of-type(even) {
+    background-color: var(--theme-bg-light); /* Zebra striping for rows */
+}
+
+.cbse-table tbody tr:hover {
+    background-color: rgba(var(--theme-accent-rgb), 0.05); /* Subtle hover effect */
+    transition: background-color 0.2s ease-in-out;
+}
+
+.cbse-table tbody tr td a {
+    color: var(--theme-accent); /* Accent color for links */
     text-decoration: none;
+    font-weight: 500;
 }
 
-.cbse-table a:hover {
+.cbse-table tbody tr td a:hover {
     text-decoration: underline;
+}
+
+/* Responsive table styling */
+@media (max-width: 768px) {
+    .cbse-table thead {
+        display: none; /* Hide header on small screens */
+    }
+
+    .cbse-table, .cbse-table tbody, .cbse-table tr, .cbse-table td {
+        display: block; /* Make table elements block level */
+        width: 100%;
+    }
+
+    .cbse-table tr {
+        margin-bottom: 15px;
+        border: 1px solid var(--theme-neutral-light);
+        border-radius: 5px;
+        overflow: hidden;
+    }
+
+    .cbse-table td {
+        border: none; /* Remove cell borders */
+        border-bottom: 1px solid var(--theme-bg-medium); /* Add bottom border to cells */
+        position: relative;
+        padding-left: 50%; /* Make space for the label */
+        text-align: right; /* Align content to the right */
+    }
+
+    .cbse-table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 15px;
+        width: calc(50% - 30px); /* Adjust width */
+        padding-right: 10px;
+        white-space: nowrap;
+        font-weight: 600;
+        color: var(--theme-primary-darker);
+        text-align: left; /* Align label to the left */
+    }
+
+    .cbse-table tbody tr:nth-of-type(even) {
+        background-color: transparent; /* Remove striping on small screens */
+    }
+
+    .cbse-table tbody tr:hover {
+         background-color: transparent; /* Remove hover effect on small screens */
+    }
 }
 
 .cbse-table th {
